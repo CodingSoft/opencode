@@ -19,5 +19,6 @@
         "namespaceImportPackages": ["effect", "@effect/*"]
       }
     ]
-  }
+  },
+  "exclude": ["src/provider/models-snapshot.ts", "src/provider/models-snapshot.js", "src/provider/models-snapshot.d.ts"]
 }
