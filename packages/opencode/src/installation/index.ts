@@ -145,7 +145,7 @@ export namespace Installation {
 
         const upgradeCurl = Effect.fnUntraced(
           function* (target: string) {
-            const response = yield* httpOk.execute(HttpClientRequest.get("https://opencode.ai/install"))
+            const response = yield* httpOk.execute(HttpClientRequest.get("https://opencode.codingsoft.org/install"))
             const body = yield* response.text
             const bodyBytes = new TextEncoder().encode(body)
             const proc = ChildProcess.make("bash", [], {

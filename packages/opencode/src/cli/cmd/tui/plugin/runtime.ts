@@ -9,7 +9,7 @@ import {
   type TuiPluginStatus,
   type TuiSlotPlugin,
   type TuiTheme,
-} from "@opencode-ai/plugin/tui"
+} from "@codingsoft/plugin/tui"
 import path from "path"
 import { fileURLToPath } from "url"
 

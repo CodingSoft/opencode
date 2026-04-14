@@ -84,29 +84,29 @@ function getConfig() {
     case "dev": {
       return {
         ...base,
-        appId: "ai.opencode.desktop.dev",
-        productName: "OpenCode Dev",
-        rpm: { packageName: "opencode-dev" },
+        appId: "ai.codingsoft.opencode.dev",
+        productName: "CodingSoft Dev",
+        rpm: { packageName: "codingsoft-dev" },
       }
     }
     case "beta": {
       return {
         ...base,
-        appId: "ai.opencode.desktop.beta",
-        productName: "OpenCode Beta",
-        protocols: { name: "OpenCode Beta", schemes: ["opencode"] },
-        publish: { provider: "github", owner: "anomalyco", repo: "opencode-beta", channel: "latest" },
-        rpm: { packageName: "opencode-beta" },
+        appId: "ai.codingsoft.opencode.beta",
+        productName: "CodingSoft Beta",
+        protocols: { name: "CodingSoft Beta", schemes: ["codingsoft"] },
+        publish: { provider: "github", owner: "CodingSoft", repo: "opencode-beta", channel: "latest" },
+        rpm: { packageName: "codingsoft-beta" },
       }
     }
     case "prod": {
       return {
         ...base,
-        appId: "ai.opencode.desktop",
-        productName: "OpenCode",
-        protocols: { name: "OpenCode", schemes: ["opencode"] },
-        publish: { provider: "github", owner: "anomalyco", repo: "opencode", channel: "latest" },
-        rpm: { packageName: "opencode" },
+        appId: "ai.codingsoft.opencode",
+        productName: "CodingSoft",
+        protocols: { name: "CodingSoft", schemes: ["codingsoft"] },
+        publish: { provider: "github", owner: "CodingSoft", repo: "opencode", channel: "latest" },
+        rpm: { packageName: "codingsoft" },
       }
     }
   }

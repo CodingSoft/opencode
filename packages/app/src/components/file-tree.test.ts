@@ -20,15 +20,15 @@ beforeAll(async () => {
       },
     }),
   }))
-  mock.module("@opencode-ai/ui/collapsible", () => ({
+  mock.module("@codingsoft/ui/collapsible", () => ({
     Collapsible: {
       Trigger: (props: { children?: unknown }) => props.children,
       Content: (props: { children?: unknown }) => props.children,
     },
   }))
-  mock.module("@opencode-ai/ui/file-icon", () => ({ FileIcon: () => null }))
-  mock.module("@opencode-ai/ui/icon", () => ({ Icon: () => null }))
-  mock.module("@opencode-ai/ui/tooltip", () => ({ Tooltip: (props: { children?: unknown }) => props.children }))
+  mock.module("@codingsoft/ui/file-icon", () => ({ FileIcon: () => null }))
+  mock.module("@codingsoft/ui/icon", () => ({ Icon: () => null }))
+  mock.module("@codingsoft/ui/tooltip", () => ({ Tooltip: (props: { children?: unknown }) => props.children }))
   const mod = await import("./file-tree")
   shouldListRoot = mod.shouldListRoot
   shouldListExpanded = mod.shouldListExpanded

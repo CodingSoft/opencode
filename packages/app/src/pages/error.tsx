@@ -1,11 +1,11 @@
-import { TextField } from "@opencode-ai/ui/text-field"
-import { Logo } from "@opencode-ai/ui/logo"
-import { Button } from "@opencode-ai/ui/button"
+import { TextField } from "@codingsoft/ui/text-field"
+import { Logo } from "@codingsoft/ui/logo"
+import { Button } from "@codingsoft/ui/button"
 import { Component, Show, onMount } from "solid-js"
 import { createStore } from "solid-js/store"
 import { usePlatform } from "@/context/platform"
 import { useLanguage } from "@/context/language"
-import { Icon } from "@opencode-ai/ui/icon"
+import { Icon } from "@codingsoft/ui/icon"
 import type { E2EWindow } from "@/testing/terminal"
 
 export type InitError = {

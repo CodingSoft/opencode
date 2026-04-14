@@ -1,7 +1,7 @@
 import { Log } from "../util/log"
 import path from "path"
 import { Global } from "../global"
-import { NamedError } from "@opencode-ai/util/error"
+import { NamedError } from "@codingsoft/util/error"
 import z from "zod"
 import { AppFileSystem } from "@/filesystem"
 import { Effect, Exit, Layer, Option, RcMap, Schema, Context, TxReentrantLock } from "effect"

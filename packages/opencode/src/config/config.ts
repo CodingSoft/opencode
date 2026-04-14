@@ -7,7 +7,7 @@ import z from "zod"
 import { mergeDeep, pipe, unique } from "remeda"
 import { Global } from "../global"
 import fsNode from "fs/promises"
-import { NamedError } from "@opencode-ai/util/error"
+import { NamedError } from "@codingsoft/util/error"
 import { Flag } from "../flag/flag"
 import { Auth } from "../auth"
 import { Env } from "../env"
@@ -870,7 +870,7 @@ export namespace Config {
       command: z
         .record(z.string(), Command)
         .optional()
-        .describe("Command configuration, see https://opencode.ai/docs/commands"),
+        .describe("Command configuration, see https://opencode.codingsoft.org/docs/commands"),
       skills: Skills.optional().describe("Additional skill folder paths"),
       watcher: z
         .object({
@@ -942,7 +942,7 @@ export namespace Config {
         })
         .catchall(Agent)
         .optional()
-        .describe("Agent configuration, see https://opencode.ai/docs/agents"),
+        .describe("Agent configuration, see https://opencode.codingsoft.org/docs/agents"),
       provider: z
         .record(z.string(), Provider)
         .optional()
@@ -1209,8 +1209,8 @@ export namespace Config {
         const parsed = Info.safeParse(normalized)
         if (parsed.success) {
           if (!parsed.data.$schema && isFile) {
-            parsed.data.$schema = "https://opencode.ai/config.json"
-            const updated = original.replace(/^\s*\{/, '{\n  "$schema": "https://opencode.ai/config.json",')
+            parsed.data.$schema = "https://opencode.codingsoft.org/config.json"
+            const updated = original.replace(/^\s*\{/, '{\n  "$schema": "https://opencode.codingsoft.org/config.json",')
             yield* fs.writeFileString(options.path, updated).pipe(Effect.catch(() => Effect.void))
           }
           const data = parsed.data
@@ -1251,7 +1251,7 @@ export namespace Config {
               .then(async (mod) => {
                 const { provider, model, ...rest } = mod.default
                 if (provider && model) result.model = `${provider}/${model}`
-                result["$schema"] = "https://opencode.ai/config.json"
+                result["$schema"] = "https://opencode.codingsoft.org/config.json"
                 result = mergeDeep(result, rest)
                 await fsNode.writeFile(path.join(Global.Path.config, "config.json"), JSON.stringify(result, null, 2))
                 await fsNode.unlink(legacy)
@@ -1280,13 +1280,13 @@ export namespace Config {
       const install = Effect.fnUntraced(function* (dir: string) {
         const pkg = path.join(dir, "package.json")
         const gitignore = path.join(dir, ".gitignore")
-        const plugin = path.join(dir, "node_modules", "@opencode-ai", "plugin", "package.json")
+        const plugin = path.join(dir, "node_modules", "@codingsoft", "plugin", "package.json")
         const target = Installation.isLocal() ? "*" : Installation.VERSION
         const json = yield* fs.readJson(pkg).pipe(
           Effect.catch(() => Effect.succeed({} satisfies Package)),
           Effect.map((x): Package => (isRecord(x) ? (x as Package) : {})),
         )
-        const hasDep = json.dependencies?.["@opencode-ai/plugin"] === target
+        const hasDep = json.dependencies?.["@codingsoft/plugin"] === target
         const hasIgnore = yield* fs.existsSafe(gitignore)
         const hasPkg = yield* fs.existsSafe(plugin)
 
@@ -1295,7 +1295,7 @@ export namespace Config {
             ...json,
             dependencies: {
               ...json.dependencies,
-              "@opencode-ai/plugin": target,
+              "@codingsoft/plugin": target,
             },
           })
         }
@@ -1386,7 +1386,7 @@ export namespace Config {
             }
             const wellknown = (yield* Effect.promise(() => response.json())) as any
             const remoteConfig = wellknown.config ?? {}
-            if (!remoteConfig.$schema) remoteConfig.$schema = "https://opencode.ai/config.json"
+            if (!remoteConfig.$schema) remoteConfig.$schema = "https://opencode.codingsoft.org/config.json"
             const source = `${url}/.well-known/opencode`
             const next = yield* loadConfig(JSON.stringify(remoteConfig), {
               dir: path.dirname(source),

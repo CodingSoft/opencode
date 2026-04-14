@@ -8,7 +8,7 @@ import { Log } from "../util/log"
 import { Npm } from "../npm"
 import { Hash } from "../util/hash"
 import { Plugin } from "../plugin"
-import { NamedError } from "@opencode-ai/util/error"
+import { NamedError } from "@codingsoft/util/error"
 import { type LanguageModelV3 } from "@ai-sdk/provider"
 import { ModelsDev } from "./models"
 import { Auth } from "../auth"
@@ -422,7 +422,7 @@ export namespace Provider {
           autoload: false,
           options: {
             headers: {
-              "HTTP-Referer": "https://opencode.ai/",
+              "HTTP-Referer": "https://opencode.codingsoft.org/",
               "X-Title": "opencode",
             },
           },
@@ -432,7 +432,7 @@ export namespace Provider {
           autoload: false,
           options: {
             headers: {
-              "http-referer": "https://opencode.ai/",
+              "http-referer": "https://opencode.codingsoft.org/",
               "x-title": "opencode",
             },
           },
@@ -530,7 +530,7 @@ export namespace Provider {
           autoload: false,
           options: {
             headers: {
-              "HTTP-Referer": "https://opencode.ai/",
+              "HTTP-Referer": "https://opencode.codingsoft.org/",
               "X-Title": "opencode",
             },
           },
@@ -809,7 +809,7 @@ export namespace Provider {
           autoload: false,
           options: {
             headers: {
-              "HTTP-Referer": "https://opencode.ai/",
+              "HTTP-Referer": "https://opencode.codingsoft.org/",
               "X-Title": "opencode",
             },
           },

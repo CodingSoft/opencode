@@ -1,4 +1,4 @@
-import type { Hooks, PluginInput } from "@opencode-ai/plugin"
+import type { Hooks, PluginInput } from "@codingsoft/plugin"
 
 export async function CloudflareWorkersAuthPlugin(_input: PluginInput): Promise<Hooks> {
   const prompts = [

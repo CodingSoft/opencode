@@ -815,11 +815,11 @@ test("installs dependencies in writable OPENCODE_CONFIG_DIR", async () => {
   process.env.OPENCODE_CONFIG_DIR = tmp.extra
   const online = spyOn(Network, "online").mockReturnValue(false)
   const install = spyOn(Npm, "install").mockImplementation(async (dir: string) => {
-    const mod = path.join(dir, "node_modules", "@opencode-ai", "plugin")
+    const mod = path.join(dir, "node_modules", "@codingsoft", "plugin")
     await fs.mkdir(mod, { recursive: true })
     await Filesystem.write(
       path.join(mod, "package.json"),
-      JSON.stringify({ name: "@opencode-ai/plugin", version: "1.0.0" }),
+      JSON.stringify({ name: "@codingsoft/plugin", version: "1.0.0" }),
     )
   })
 
@@ -860,11 +860,11 @@ it.live("dedupes concurrent config dependency installs for the same dir", () =>
       calls += 1
       Deferred.doneUnsafe(ready, Effect.void)
       await Effect.runPromise(Deferred.await(hold))
-      const mod = path.join(d, "node_modules", "@opencode-ai", "plugin")
+      const mod = path.join(d, "node_modules", "@codingsoft", "plugin")
       await fs.mkdir(mod, { recursive: true })
       await Filesystem.write(
         path.join(mod, "package.json"),
-        JSON.stringify({ name: "@opencode-ai/plugin", version: "1.0.0" }),
+        JSON.stringify({ name: "@codingsoft/plugin", version: "1.0.0" }),
       )
     })
 
@@ -934,11 +934,11 @@ it.live("serializes config dependency installs across dirs", () =>
           await Effect.runPromise(Deferred.await(hold))
         }
       }
-      const mod = path.join(cwd, "node_modules", "@opencode-ai", "plugin")
+      const mod = path.join(cwd, "node_modules", "@codingsoft", "plugin")
       await fs.mkdir(mod, { recursive: true })
       await Filesystem.write(
         path.join(mod, "package.json"),
-        JSON.stringify({ name: "@opencode-ai/plugin", version: "1.0.0" }),
+        JSON.stringify({ name: "@codingsoft/plugin", version: "1.0.0" }),
       )
       if (hit) {
         open -= 1
