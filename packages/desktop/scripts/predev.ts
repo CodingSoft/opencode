@@ -1,4 +1,5 @@
 import { $ } from "bun"
+import { existsSync } from "fs"
 
 import { copyBinaryToSidecarFolder, getCurrentSidecar, windowsify } from "./utils"
 
@@ -8,8 +9,14 @@ const sidecarConfig = getCurrentSidecar(RUST_TARGET)
 
 const binaryPath = windowsify(`../opencode/dist/${sidecarConfig.ocBinary}/bin/opencode`)
 
-await (sidecarConfig.ocBinary.includes("-baseline")
-  ? $`cd ../opencode && bun run build --single --baseline`
-  : $`cd ../opencode && bun run build --single`)
+// Skip build if binary already exists
+if (!existsSync(binaryPath)) {
+  console.log(`Binary not found at ${binaryPath}, building...`)
+  await (sidecarConfig.ocBinary.includes("-baseline")
+    ? $`cd ../opencode && bun run build --single --baseline`
+    : $`cd ../opencode && bun run build --single`)
+} else {
+  console.log(`Binary already exists at ${binaryPath}, skipping build`)
+}
 
 await copyBinaryToSidecarFolder(binaryPath, RUST_TARGET)
